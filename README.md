@@ -33,6 +33,7 @@ The goal is to predict whether a wine is:
 1 → Good Quality Wine
 0 → Bad Quality Wine
 🚀 Step-by-Step Implementation
+
 1️⃣ Data Loading & Exploration
 Loaded dataset using pandas
 Checked:
@@ -43,6 +44,7 @@ Visualized distribution of target variable
 df.info()
 df.describe()
 df['quality'].value_counts()
+
 2️⃣ Exploratory Data Analysis (EDA)
 🔥 Correlation Heatmap
 
@@ -66,14 +68,17 @@ Multicollinearity can:
 Distort linear model coefficients
 Increase variance
 Reduce interpretability
+
 3️⃣ Handling Target Variable
 
 Converted wine quality into binary classification:
 
 df['quality'] = df['quality'].apply(lambda x: 1 if x >= 7 else 0)
+
 4️⃣ Feature & Target Split
 X = df.drop('quality', axis=1)
 y = df['quality']
+
 5️⃣ Handling Class Imbalance
 
 The dataset was imbalanced (more bad wines than good wines).
@@ -94,6 +99,7 @@ After SMOTE:
 Precision improved
 Recall improved
 F1 score improved significantly
+
 6️⃣ Feature Scaling
 
 Standardized features before PCA and model training:
@@ -101,6 +107,7 @@ Standardized features before PCA and model training:
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X_res)
+
 7️⃣ PCA (Principal Component Analysis)
 
 Applied PCA to:
@@ -122,6 +129,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
     X_pca, y_res, test_size=0.2, random_state=42
 )
+
 9️⃣ Model Training
 
 Trained multiple models:
@@ -138,6 +146,7 @@ Example:
 from sklearn.ensemble import RandomForestClassifier
 rf = RandomForestClassifier()
 rf.fit(X_train, y_train)
+
 🔟 Model Evaluation
 
 Evaluated using:
@@ -154,12 +163,14 @@ Random Forest
 
 Accuracy ≈ 91.86%
 Strong balance of precision & recall
+
 1️⃣1️⃣ Model Saving
 
 Saved trained model using joblib:
 
 import joblib
 joblib.dump(rf, "wine_quality_prediction")
+
 1️⃣2️⃣ GUI Deployment (Tkinter)
 
 Built a simple GUI where users can:
